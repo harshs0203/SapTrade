@@ -12,24 +12,30 @@ class Body extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: size.height *0.8,
+          height: size.height * 0.8,
           child: Row(
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical : kDefaultPadding * 3),
+                  padding: EdgeInsets.symmetric(vertical: kDefaultPadding * 3),
                   child: Column(
                     children: [
                       Align(
                         alignment: Alignment.topLeft,
                         child: IconButton(
-                          padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                            icon: SvgPicture.asset('assets/icons/back_arrow.svg'),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: kDefaultPadding),
+                            icon:
+                                SvgPicture.asset('assets/icons/back_arrow.svg'),
                             onPressed: () {
                               Navigator.pop(context);
                             }),
                       ),
                       Spacer(),
+                      IconCard(image: 'assets/icons/sun.svg',),
+                      IconCard(image: 'assets/icons/icon_2.svg',),
+                      IconCard(image: 'assets/icons/icon_3.svg',),
+                      IconCard(image: 'assets/icons/icon_4.svg',),
                     ],
                   ),
                 ),
@@ -60,6 +66,43 @@ class Body extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class IconCard extends StatelessWidget {
+
+  final String image;
+
+  const IconCard({Key key, this.image}) : super(key: key);
+
+ @override
+  Widget build(BuildContext context) {
+   Size size = MediaQuery.of(context).size;
+
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: size.height*0.03),
+      padding: EdgeInsets.all(kDefaultPadding / 2.5),
+      height: 62,
+      width: 62,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(0, 15),
+            blurRadius: 20,
+            color: kPrimaryColor.withOpacity(0.20),
+          ),
+          BoxShadow(
+            offset: Offset(-15, -15),
+            blurRadius: 20,
+            color: Colors.white,
+          ),
+        ],
+      ),
+      child: IconButton(
+          icon: SvgPicture.asset(image),
+          onPressed: () {}),
     );
   }
 }
