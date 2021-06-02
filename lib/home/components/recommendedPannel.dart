@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sap_trade/detail/detailScreen.dart';
 
 import '../../constants.dart';
 
@@ -18,21 +19,28 @@ class recommendedPannel extends StatelessWidget {
             title: 'customer 1',
             location: 'location',
             price: 100,
-            press: (){},
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailScreen(),
+                ),
+              );
+            },
           ),
           RecommendedCard(
             image: 'assets/images/image_2.png',
             title: 'customer 1',
             location: 'location',
             price: 100,
-            press: (){},
+            press: () {},
           ),
           RecommendedCard(
             image: 'assets/images/image_3.png',
             title: 'customer 1',
             location: 'location',
             price: 100,
-            press: (){},
+            press: () {},
           ),
         ],
       ),
@@ -41,14 +49,13 @@ class recommendedPannel extends StatelessWidget {
 }
 
 class RecommendedCard extends StatelessWidget {
-
-
   final String image, title, location;
   final int price;
   final Function press;
 
-  const RecommendedCard({Key key, this.image, this.title, this.location, this.price, this.press}) : super(key: key);
-
+  const RecommendedCard(
+      {Key key, this.image, this.title, this.location, this.price, this.press})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,25 +74,26 @@ class RecommendedCard extends StatelessWidget {
             onTap: press,
             child: Container(
               padding: EdgeInsets.all(kDefaultPadding / 2),
-              decoration: BoxDecoration(color: Colors.white, boxShadow: [
-                BoxShadow(
-                  offset: Offset(0, 10),
-                  blurRadius: 50,
-                  color: kPrimaryColor.withOpacity(0.3),
-                ),
-              ],
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, 10),
+                      blurRadius: 50,
+                      color: kPrimaryColor.withOpacity(0.3),
+                    ),
+                  ],
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(10),
                     bottomLeft: Radius.circular(10),
-                  )
-              ),
+                  )),
               child: Row(
                 children: [
                   RichText(
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: title.toUpperCase()+'\n',
+                          text: title.toUpperCase() + '\n',
                           style: Theme.of(context).textTheme.button,
                         ),
                         TextSpan(

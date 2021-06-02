@@ -19,7 +19,7 @@ SingleChildScrollView FeaturePannel() {
     ),
   );
 }
-}
+
 
 class FeatureCard extends StatelessWidget {
 
