@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sap_trade/constants.dart';
+import 'package:sap_trade/SaleScreen/PersonalDetails.dart';
 import 'package:sap_trade/home/components/body.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'components/BottomNavigationBar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(context),
       body: Body(),
       bottomNavigationBar: BottomBar(),
     );
@@ -20,12 +19,17 @@ class HomeScreen extends StatelessWidget {
 
 
 
-AppBar buildAppBar() {
+AppBar buildAppBar(context) {
   return AppBar(
     elevation: 0,
     leading: IconButton(
       icon: SvgPicture.asset("assets/icons/menu.svg"),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PersonalDetail()),
+        );
+      },
     ),
   );
 }

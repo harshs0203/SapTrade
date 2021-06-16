@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sap_trade/SaleScreen/PersonalDetails.dart';
 import 'package:sap_trade/constants.dart';
 import 'package:sap_trade/home/home_screen.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(),
+      home: PersonalDetail(),
     );
   }
 }
