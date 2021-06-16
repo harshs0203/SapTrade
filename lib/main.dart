@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sap_trade/SaleScreen/PersonalDetails.dart';
+import 'package:sap_trade/SaleScreen/Sub%20Screens/PersonalDetails.dart';
 import 'package:sap_trade/constants.dart';
 import 'package:sap_trade/home/home_screen.dart';
 
