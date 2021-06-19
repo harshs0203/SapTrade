@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sap_trade/SaleScreen/Screens/plant_details.dart';
-import 'package:sap_trade/SaleScreen/components/bottom_controls.dart';
-import 'package:sap_trade/SaleScreen/components/form_items.dart';
+import 'package:sap_trade/sale/Screens/plant_details.dart';
+import 'package:sap_trade/sale/components/bottom_controls.dart';
+import 'package:sap_trade/sale/components/form_items.dart';
 
 import '../../constants.dart';
 

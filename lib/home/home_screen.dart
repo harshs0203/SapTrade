@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sap_trade/SaleScreen/Screens/PersonalDetails.dart';
+import 'package:sap_trade/sale/Screens/PersonalDetails.dart';
 import 'package:sap_trade/home/components/body.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'components/BottomNavigationBar.dart';
@@ -22,14 +22,18 @@ class HomeScreen extends StatelessWidget {
 AppBar buildAppBar(context) {
   return AppBar(
     elevation: 0,
-    leading: IconButton(
-      icon: SvgPicture.asset("assets/icons/menu.svg"),
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => PersonalDetail()),
-        );
-      },
+    leading: Row(
+      children: [
+        IconButton(
+          icon: SvgPicture.asset("assets/icons/menu.svg"),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PersonalDetail()),
+            );
+          },
+        ),
+      ],
     ),
   );
 }

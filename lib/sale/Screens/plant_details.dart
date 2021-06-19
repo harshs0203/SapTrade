@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sap_trade/SaleScreen/Screens/AdditionalInformation.dart';
-import 'package:sap_trade/SaleScreen/components/CustomSlider.dart';
-import 'package:sap_trade/SaleScreen/components/bottom_controls.dart';
-import 'package:sap_trade/SaleScreen/components/plant_image.dart';
+import 'package:sap_trade/sale/Screens/AdditionalInformation.dart';
+import 'package:sap_trade/sale/components/CustomSlider.dart';
+import 'package:sap_trade/sale/components/bottom_control_plant.dart';
+import 'package:sap_trade/sale/components/bottom_controls.dart';
+import 'package:sap_trade/sale/components/plant_image.dart';
 import 'package:sap_trade/constants.dart';
 
 class PlantDetails extends StatefulWidget {
@@ -32,7 +33,7 @@ class _PlantDetailsState extends State<PlantDetails> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.040,
               ),
-              BottomControls(size: MediaQuery.of(context).size, nextScreen: AdditionalInformation()),
+              BottomControlPlant(size: MediaQuery.of(context).size, nextScreen: AdditionalInformation(),),
             ],
           ),
         ),

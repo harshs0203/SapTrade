@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sap_trade/buy/buyScreen.dart';
 import 'package:sap_trade/detail/components/title_price.dart';
 import '../../constants.dart';
 import 'image_pannel.dart';
@@ -26,7 +27,12 @@ class Body extends StatelessWidget {
                     ),
                   ),
                   color: kPrimaryColor,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BuyScreen()),
+                    );
+                  },
                   child: Text(
                     "Buy Now",
                     style: TextStyle(

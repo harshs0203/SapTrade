@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sap_trade/SaleScreen/components/plant_image.dart';
-
 import '../../constants.dart';
 
 class BottomControls extends StatelessWidget {
   const BottomControls({
     Key key,
     @required this.size,
-    this.formKey, this.nextScreen,
+    this.formKey, @required this.nextScreen,
   }) : super(key: key);
 
   final Size size;
@@ -32,7 +30,7 @@ class BottomControls extends StatelessWidget {
                   size: size.width * 0.14,
                 ),
                 onPressed: () {
-                  //Navigator.pop(context);
+                  Navigator.pop(context);
                 }),
           ],
         ),
