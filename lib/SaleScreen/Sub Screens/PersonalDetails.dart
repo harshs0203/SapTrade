@@ -32,7 +32,7 @@ class _PersonalDetailState extends State<PersonalDetail> {
               right: kDefaultPadding,
               left: kDefaultPadding / 2),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
                 height: size.height * 0.05,
@@ -57,6 +57,9 @@ class _PersonalDetailState extends State<PersonalDetail> {
                     FormItems(size: size,title: 'Phone Number',type: TextInputType.phone),
                   ],
                 ),
+              ),
+              SizedBox(
+                height: size.height*0.1,
               ),
               BottomControls(size: size, formKey: _formKey),
             ],

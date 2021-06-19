@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:sap_trade/SaleScreen/components/plant_image.dart';
 
 import '../../constants.dart';
 
 class BottomControls extends StatelessWidget {
   const BottomControls({
     Key key,
-
-    @required this.size, this.formKey,
+    @required this.size,
+    this.formKey,
   }) : super(key: key);
 
   final Size size;
@@ -15,32 +16,50 @@ class BottomControls extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconButton(
-            color: kPrimaryColor,
-            alignment: Alignment.centerRight,
-            icon: Icon(
-              Icons.arrow_back,
-              size: size.width * 0.14,
+        Stack(
+          children: [
+            CircleAvatar(
+              backgroundColor: kPrimaryColor,
+              radius: 35,
             ),
-            onPressed: () {
-              //Navigator.pop(context);
-            }),
-        SizedBox(
-          width : size.width *0.63,
+            IconButton(
+                color: Colors.white,
+                alignment: Alignment.center,
+                icon: Icon(
+                  Icons.arrow_back,
+                  size: size.width * 0.14,
+                ),
+                onPressed: () {
+                  //Navigator.pop(context);
+                }),
+          ],
         ),
-        IconButton(
-            alignment: Alignment.centerLeft,
-            icon: Icon(
-              Icons.arrow_forward,
-              color: kPrimaryColor,
-              size: size.width * 0.14,
+        SizedBox(
+          width: size.width * 0.557,
+        ),
+        Stack(
+          children: [
+            CircleAvatar(
+              backgroundColor: kPrimaryColor,
+              radius: 35,
             ),
-            onPressed: () {
-              if (!formKey.currentState.validate()) {
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text('Processing Data')));
-              }
-            }),
+            IconButton(
+                color: Colors.white,
+                alignment: Alignment.center,
+                icon: Icon(
+                  Icons.arrow_forward,
+                  size: size.width * 0.14,
+                ),
+                onPressed: () {
+                  if (formKey.currentState.validate()) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PlantImage()),
+                    );
+                  }
+                }),
+          ],
+        ),
       ],
     );
   }
