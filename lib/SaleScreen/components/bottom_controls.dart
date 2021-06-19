@@ -7,11 +7,13 @@ class BottomControls extends StatelessWidget {
   const BottomControls({
     Key key,
     @required this.size,
-    this.formKey,
+    this.formKey, this.nextScreen,
   }) : super(key: key);
 
   final Size size;
   final GlobalKey<FormState> formKey;
+  @required final Widget nextScreen;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -54,7 +56,7 @@ class BottomControls extends StatelessWidget {
                   if (formKey.currentState.validate()) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => PlantImage()),
+                      MaterialPageRoute(builder: (context) => nextScreen),
                     );
                   }
                 }),

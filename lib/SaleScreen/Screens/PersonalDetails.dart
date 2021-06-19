@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sap_trade/SaleScreen/Screens/plant_details.dart';
 import 'package:sap_trade/SaleScreen/components/bottom_controls.dart';
 import 'package:sap_trade/SaleScreen/components/form_items.dart';
 
@@ -61,7 +62,7 @@ class _PersonalDetailState extends State<PersonalDetail> {
               SizedBox(
                 height: size.height*0.1,
               ),
-              BottomControls(size: size, formKey: _formKey),
+              BottomControls(size: size, formKey: _formKey, nextScreen: PlantDetails()),
             ],
           ),
         ),

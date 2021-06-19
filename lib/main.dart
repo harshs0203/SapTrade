@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sap_trade/SaleScreen/Sub%20Screens/plant_details.dart';
+import 'package:sap_trade/SaleScreen/Screens/AdditionalInformation.dart';
 import 'package:sap_trade/constants.dart';
 import 'package:sap_trade/home/home_screen.dart';
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: PlantDetails(),
+      home: AdditionalInformation(),
     );
   }
 }
