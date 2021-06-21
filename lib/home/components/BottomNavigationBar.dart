@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+import 'package:sap_trade/services/authentication/google_sign_in.dart';
+import 'package:sap_trade/welcome/splash_screen.dart';
 
 import '../../constants.dart';
 
@@ -32,11 +35,21 @@ class BottomBar extends StatelessWidget {
               icon: SvgPicture.asset('assets/icons/flower.svg'),
               onPressed: () {}),
           IconButton(
-              icon: SvgPicture.asset('assets/icons/heart-icon.svg'),
-              onPressed: () {}),
+              icon: Icon(Icons.logout),
+              onPressed: () {
+
+              }),
           IconButton(
               icon: SvgPicture.asset('assets/icons/user-icon.svg'),
-              onPressed: () {}),
+              onPressed: () {
+                final provider =
+                Provider.of<GoogleSignInProvider>(context, listen: false);
+                provider.logout();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SplashScreen()),
+                );
+              }),
         ],
       ),
     );

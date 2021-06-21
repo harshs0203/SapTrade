@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+
+//TODO: Fix Hero Animation
+
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -15,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
         Duration(seconds: 5),
         () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginScreen())));
+            context, PageRouteBuilder(transitionDuration: Duration(seconds: 2) , pageBuilder: (_,__,___)=> LoginScreen())));
   }
 
   @override
@@ -32,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Container(
               child: Image.asset(
                 'assets/images/LOGO1.png',
-                height: 300,
+                height: 700,
               ),
             ),
           ),

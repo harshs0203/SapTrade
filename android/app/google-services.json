@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "888699581764",
+    "project_id": "snap-trade-e3107",
+    "storage_bucket": "snap-trade-e3107.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888699581764:android:7f246a1557ee38d8e41311",
+        "android_client_info": {
+          "package_name": "com.harshs.sap_trade"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888699581764-7vdduflijdpn9get5m7p2mdhb01j837t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtGoOf_tTYLDhVqmhQJROl1Prp2wFAro0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888699581764-7vdduflijdpn9get5m7p2mdhb01j837t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
