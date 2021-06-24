@@ -35,12 +35,9 @@ class BottomBar extends StatelessWidget {
               icon: SvgPicture.asset('assets/icons/flower.svg'),
               onPressed: () {}),
           IconButton(
-              icon: Icon(Icons.logout),
-              onPressed: () {
-
-              }),
-          IconButton(
-              icon: SvgPicture.asset('assets/icons/user-icon.svg'),
+              icon: Icon(Icons.logout ,
+              color: Colors.grey[400],
+              ),
               onPressed: () {
                 final provider =
                 Provider.of<GoogleSignInProvider>(context, listen: false);
@@ -49,6 +46,11 @@ class BottomBar extends StatelessWidget {
                   context,
                   MaterialPageRoute(builder: (context) => SplashScreen()),
                 );
+              }),
+          IconButton(
+              icon: SvgPicture.asset('assets/icons/user-icon.svg'),
+              onPressed: () {
+
               }),
         ],
       ),

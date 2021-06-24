@@ -17,8 +17,6 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-
-
 AppBar buildAppBar(context) {
   return AppBar(
     elevation: 0,

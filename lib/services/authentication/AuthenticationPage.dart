@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
+import 'package:sap_trade/constants.dart';
 import 'package:sap_trade/home/home_screen.dart';
 import 'package:sap_trade/services/authentication/google_sign_in.dart';
 import 'package:sap_trade/welcome/splash_screen.dart';
@@ -17,6 +17,7 @@ class Authentication extends StatelessWidget {
             if (provider.isSigningIn) {
               return buildLoading();
             } else if (snapshot.hasData) {
+              print('uid:' + FirebaseAuth.instance.currentUser.uid);
               return HomeScreen();
             } else {
               return SplashScreen();
@@ -29,10 +30,9 @@ class Authentication extends StatelessWidget {
   Widget buildLoading() => Stack(
         fit: StackFit.expand,
         children: [
-          //CustomPaint(painter: BackgroundPainter()),
           Center(
-            child: SpinKitRipple(
-              color: Colors.white,
+            child: CircularProgressIndicator(
+              backgroundColor: kPrimaryColor,
             ),
           ),
         ],

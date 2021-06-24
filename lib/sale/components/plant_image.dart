@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sap_trade/constants.dart';
+import 'package:sap_trade/sale/Screens/plant_details.dart';
 
 class PlantImage extends StatefulWidget {
   @override
@@ -127,6 +128,17 @@ class _PlantImageState extends State<PlantImage> {
     );
     setState(() {
       _imageFile = pickedFile;
+      passingImage(_imageFile);
     });
   }
+
+  void passingImage(PickedFile pickedFile){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PlantDetails(imageURL: pickedFile)),
+    );
+  }
 }
+
+
+
