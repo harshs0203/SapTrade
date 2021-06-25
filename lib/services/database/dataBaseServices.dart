@@ -9,10 +9,12 @@ class DatabaseServices{
   //collection reference
   final CollectionReference sellersCollection = FirebaseFirestore.instance.collection('Sellers');
   final CollectionReference plantsCollection = FirebaseFirestore.instance.collection('Plants');
+  final CollectionReference buyerCollection = FirebaseFirestore.instance.collection('Buyer');
 
-  Future fetchSellerInformation(String name, String location, String address, String phone, String price, String others, String sun, String moist, String water, String wind) async{
+  Future fetchSellerInformation({String name, String location, String address, dynamic phone, dynamic price, String others, String sun, String moist, String water, String wind, dynamic image}) async{
     return await sellersCollection.doc(uid).collection(plantsCollection.path).doc(plantId).set({
       'name' : name,
+      'imageURL' : image,
       'location' : location,
       'address' : address,
       'phoneNumber' : phone,
@@ -24,4 +26,17 @@ class DatabaseServices{
       'wind' : wind,
     });
   }
+
+  Future fetchBuyerInformation({String name, String location, String address, dynamic phone, dynamic offeredPrice}) async{
+    return await buyerCollection.doc(uid).collection(plantsCollection.path).doc(plantId).set({
+      'name' : name,
+      'location' : location,
+      'address' : address,
+      'phoneNumber' : phone,
+      'Offered Price': offeredPrice,
+
+    });
+  }
+
+
 }

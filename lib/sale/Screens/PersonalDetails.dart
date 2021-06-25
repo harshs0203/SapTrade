@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sap_trade/sale/Screens/AdditionalInformation.dart';
 import 'package:sap_trade/sale/Screens/plant_details.dart';
 import 'package:sap_trade/sale/components/bottom_controls.dart';
 import 'package:sap_trade/modals/sellers.dart';
@@ -85,8 +84,10 @@ class _PersonalDetailState extends State<PersonalDetail> {
                             return null;
                           },
                           onChanged: (text) {
-                            name = text;
-                            sellerInformation.name = name;
+                            setState(() {
+                              name = text;
+                              sellerInformation.name = name;
+                            });
                             print('Name of Seller :' + sellerInformation.name);
                           },
                         ),
@@ -116,8 +117,10 @@ class _PersonalDetailState extends State<PersonalDetail> {
                             return null;
                           },
                           onChanged: (text) {
-                            location = text;
-                            sellerInformation.location = location;
+                            setState(() {
+                              location = text;
+                              sellerInformation.location = location;
+                            });
                             print('location of Seller :' + sellerInformation.location);
                           },
                         ),
@@ -146,8 +149,10 @@ class _PersonalDetailState extends State<PersonalDetail> {
                             return null;
                           },
                           onChanged: (text) {
-                            address = text;
-                            sellerInformation.address = address;
+                            setState(() {
+                              address = text;
+                              sellerInformation.address = address;
+                            });
                             print('Address of Seller :' + sellerInformation.address);
                           },
                         ),
@@ -176,11 +181,13 @@ class _PersonalDetailState extends State<PersonalDetail> {
                             return null;
                           },
                           onChanged: (text) {
-                            phone = text;
-                            sellerInformation.phoneNumber = phone;
-                            print('Number of Seller :' + sellerInformation.phoneNumber);
+                            setState(() {
+                              phone = text;
+                              sellerInformation.phoneNumber = phone;
+                            });
                           },
                         ),
+                       // FlatButton(onPressed: (){print(phone);}, child: Text('check')),
                         SizedBox(
                           height: size.height * 0.01,
                         ),

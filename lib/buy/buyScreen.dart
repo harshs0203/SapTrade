@@ -1,7 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sap_trade/buy/components/bottom_controls.dart';
-import 'package:sap_trade/buy/components/form_items.dart';
-import 'package:sap_trade/home/home_screen.dart';
+import 'package:sap_trade/modals/buyers.dart';
+import 'package:sap_trade/services/database/dataBaseServices.dart';
 
 import '../constants.dart';
 
@@ -13,6 +13,22 @@ class BuyScreen extends StatefulWidget {
 
 
 class _BuyScreenState extends State<BuyScreen> {
+
+   FirebaseAuth auth = FirebaseAuth.instance;
+   Buyer _buyer  = Buyer();
+
+   String name;
+   String location;
+   String address;
+   String phone;
+   dynamic plantId;
+   String price;
+
+  inputData() {
+    final User user = auth.currentUser;
+    dynamic userUid;
+    return userUid = user.uid;
+  }
 
   GlobalKey<FormState> _formKey;
 
@@ -54,11 +70,122 @@ class _BuyScreenState extends State<BuyScreen> {
               Form(
                 key: _formKey,
                 child: Column(
-                  children: [
-                    FormItems(size: size,title: 'Name',type: TextInputType.name),
-                    FormItems(size: size,title: 'Location',type: TextInputType.name),
-                    FormItems(size: size,title: 'Address',type: TextInputType.streetAddress),
-                    FormItems(size: size,title: 'Phone Number',type: TextInputType.phone),
+                  children: [Text(
+                    'Name',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.name,
+                      cursorColor: kPrimaryColor,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      onChanged: (text) {
+                        setState(() {
+                          name = text;
+                           _buyer.name= name;
+                        });
+                      },
+                    ),
+                    Text(
+                      'Location',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.name,
+                      cursorColor: kPrimaryColor,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      onChanged: (text) {
+                        setState(() {
+                          location = text;
+                          _buyer.location =location;
+                        });
+                      },
+                    ),
+                    Text(
+                      'Address',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.streetAddress,
+                      cursorColor: kPrimaryColor,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      onChanged: (text) {
+                        setState(() {
+                          address = text;
+                          _buyer.location = address;
+                        });
+                      },
+                    ),
+                    Text(
+                      'Phone Number',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.phone,
+                      cursorColor: kPrimaryColor,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      onChanged: (text) {
+                        setState(() {
+                         phone = text;
+                         _buyer.pNum = phone;
+                        });
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -85,12 +212,39 @@ class _BuyScreenState extends State<BuyScreen> {
                     border: OutlineInputBorder(),
                     prefixText: '₹',
                   ),
+                  onChanged: (text) {
+                    setState(() {
+                      price = text;
+                      _buyer.price = price;
+                    });
+                  },
                 ),
               ),
               SizedBox(
                 height: size.height*0.05,
               ),
-              BottomControls(size: size, formKey: _formKey, nextScreen: HomeScreen()),
+              Container(
+                alignment: Alignment.bottomRight,
+                child: RaisedButton(
+                    color: kPrimaryColor,
+                    textColor: Colors.white,
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    ),
+                    onPressed: () async {
+                      await DatabaseServices(uid: inputData(), plantId: plantId)
+                          .fetchBuyerInformation(
+                        name: name,
+                        location: location,
+                        address: address,
+                        phone: phone,
+                        offeredPrice: price,
+                      );
+                      Navigator.pop(context);
+                    },
+                    child: Text('Upload')),
+              )
             ],
           ),
         ),

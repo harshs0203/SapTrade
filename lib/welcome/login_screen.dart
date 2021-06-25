@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
 
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xFF0C9869),
+         color: Color(0xFF0C9869),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -18,12 +18,32 @@ class AdditionalInformation extends StatefulWidget {
   final String water;
   final String wind;
 
-
-  const AdditionalInformation({Key key, this.name, this.location, this.address, this.phone, this.plantId, this.imageURL, this.sunlight, this.humidity, this.water, this.wind}) : super(key: key);
-
+  const AdditionalInformation(
+      {Key key,
+      this.name,
+      this.location,
+      this.address,
+      this.phone,
+      this.plantId,
+      this.imageURL,
+      this.sunlight,
+      this.humidity,
+      this.water,
+      this.wind})
+      : super(key: key);
 
   @override
-  _AdditionalInformationState createState() => _AdditionalInformationState(this.name, this.location, this.address, this.phone, this.plantId, this.imageURL, this.sunlight, this.humidity, this.water, this.wind);
+  _AdditionalInformationState createState() => _AdditionalInformationState(
+      this.name,
+      this.location,
+      this.address,
+      this.phone,
+      this.plantId,
+      this.imageURL,
+      this.sunlight,
+      this.humidity,
+      this.water,
+      this.wind);
 }
 
 class _AdditionalInformationState extends State<AdditionalInformation> {
@@ -39,22 +59,31 @@ class _AdditionalInformationState extends State<AdditionalInformation> {
   final String wind;
 
   FirebaseAuth auth = FirebaseAuth.instance;
+  String price;
+  String otherInformation;
 
-   inputData() {
+  inputData() {
     final User user = auth.currentUser;
     dynamic userUid;
     return userUid = user.uid;
-    // here you write the codes to input the data into firestore
   }
 
+  _AdditionalInformationState(
+      this.name,
+      this.location,
+      this.address,
+      this.phone,
+      this.plantId,
+      this.imageURL,
+      this.sunlight,
+      this.humidity,
+      this.water,
+      this.wind);
 
 
-  _AdditionalInformationState(this.name, this.location, this.address, this.phone, this.plantId, this.imageURL, this.sunlight, this.humidity, this.water, this.wind);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    String price;
-    String otherInformation;
     Seller sellerInformation = Seller();
 
     return Scaffold(
@@ -83,13 +112,13 @@ class _AdditionalInformationState extends State<AdditionalInformation> {
                     prefixText: '₹',
                   ),
                   onChanged: (text) {
-                    price = text;
-                    sellerInformation.price = price;
+                    setState(() {
+                      price = text;
+                    });
                   },
                 ),
               ),
               SizedBox(height: size.height * 0.02),
-
               SizedBox(height: size.height * 0.02),
               Text(
                 'Other Information:',
@@ -103,8 +132,9 @@ class _AdditionalInformationState extends State<AdditionalInformation> {
                   border: OutlineInputBorder(),
                 ),
                 onChanged: (text) {
-                  otherInformation = text;
-                  sellerInformation.otherInformation =otherInformation;
+                  setState(() {
+                    otherInformation = text;
+                  });
                 },
               ),
               SizedBox(height: size.height * 0.25),
@@ -118,7 +148,20 @@ class _AdditionalInformationState extends State<AdditionalInformation> {
                       borderRadius: BorderRadius.circular(18.0),
                     ),
                     onPressed: () async {
-                        await DatabaseServices(uid: inputData(),plantId: plantId).fetchSellerInformation(name, location, address, phone, price,otherInformation, sunlight, humidity, water, wind);
+                      await DatabaseServices(uid: inputData(), plantId: plantId)
+                          .fetchSellerInformation(
+                        name: name,
+                        location: location,
+                        address: address,
+                        phone: phone,
+                        image: imageURL,
+                        sun: sunlight,
+                        moist: humidity,
+                        water: water,
+                        wind: wind,
+                        price: price,
+                        others: otherInformation,
+                      );
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => HomeScreen()),
