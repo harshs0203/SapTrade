@@ -10,7 +10,7 @@ class Authentication extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: StreamBuilder<Object>(
+      body: StreamBuilder<Object>(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             final provider = Provider.of<GoogleSignInProvider>(context);
@@ -22,8 +22,7 @@ class Authentication extends StatelessWidget {
             } else {
               return SplashScreen();
             }
-          }
-        ),
+          }),
     );
   }
 
@@ -38,3 +37,4 @@ class Authentication extends StatelessWidget {
         ],
       );
 }
+

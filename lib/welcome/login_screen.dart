@@ -65,7 +65,7 @@ class _LoginState extends State<Login> {
   }
 }
 
-class SignInButton extends StatelessWidget {
+class SignInButton extends StatefulWidget {
   const SignInButton({
     Key key,
     @required this.widget,
@@ -74,11 +74,19 @@ class SignInButton extends StatelessWidget {
   final Login widget;
 
   @override
+  _SignInButtonState createState() => _SignInButtonState();
+}
+
+class _SignInButtonState extends State<SignInButton> {
+
+  var provider;
+
+  @override
   Widget build(BuildContext context) {
     return FlatButton(
       color: Colors.white,
       onPressed: () {
-        final provider =
+        provider =
         Provider.of<GoogleSignInProvider>(context, listen: false);
         provider.login();
         Navigator.push(
@@ -87,7 +95,7 @@ class SignInButton extends StatelessWidget {
         );
       },
       child: Container(
-        width: widget.size.width * 0.75,
+        width: widget.widget.size.width * 0.75,
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -114,6 +122,11 @@ class SignInButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(40.0),
       ),
     );
+  }
+  @override
+  void dispose() {
+
+    super.dispose();
   }
 }
 

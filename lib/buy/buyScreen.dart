@@ -233,13 +233,14 @@ class _BuyScreenState extends State<BuyScreen> {
                       borderRadius: BorderRadius.circular(18.0),
                     ),
                     onPressed: () async {
-                      await DatabaseServices(uid: inputData(), plantId: plantId)
-                          .fetchBuyerInformation(
+                      await DatabaseServices(uid: inputData())
+                          .sendingBuyerInformation(
                         name: name,
                         location: location,
                         address: address,
                         phone: phone,
                         offeredPrice: price,
+                        plantId: plantId
                       );
                       Navigator.pop(context);
                     },

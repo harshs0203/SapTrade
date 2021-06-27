@@ -1,8 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sap_trade/home/components/header_with_image.dart';
 import 'package:sap_trade/home/components/recommendedPannel.dart';
 import 'package:sap_trade/home/components/titleWithButton.dart';
-
+import 'package:provider/provider.dart';
 import '../../constants.dart';
 import 'FeaturePannel.dart';
 
@@ -11,6 +12,13 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // final sellerInfo = Provider.of<QuerySnapshot<Object>>(context);
+    // for(var doc in sellerInfo.docs){
+    //   print(doc.data());
+    // }
+
+
     Size size = MediaQuery
         .of(context)
         .size;

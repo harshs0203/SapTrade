@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sap_trade/services/authentication/google_sign_in.dart';
+import 'package:sap_trade/services/database/dataBaseServices.dart';
 import 'package:sap_trade/welcome/splash_screen.dart';
-
 import '../../constants.dart';
 
 class BottomBar extends StatelessWidget {

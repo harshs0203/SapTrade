@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'login_screen.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -12,12 +14,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  Timer _timer;
+
   @override
   void initState() {
     super.initState();
-    Timer(
-        Duration(seconds: 5),
-        () => Navigator.push(
+    _timer = new Timer(Duration(seconds: 5),
+            () => Navigator.push(
             context, PageRouteBuilder(transitionDuration: Duration(seconds: 2) , pageBuilder: (_,__,___)=> LoginScreen())));
   }
 
@@ -48,4 +52,11 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+   _timer.cancel();
+    super.dispose();
+  }
+
 }

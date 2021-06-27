@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.harshs.sap_trade">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
-   <application
+    <application
         android:label="sap_trade"
         android:icon="@mipmap/ic_launcher">
         <activity
