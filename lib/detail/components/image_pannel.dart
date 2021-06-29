@@ -7,9 +7,11 @@ import 'IconCard.dart';
 class ImagePannel extends StatelessWidget {
   const ImagePannel({
     Key key,
-    @required this.size,
+    @required this.size, this.imagePath,
   }) : super(key: key);
 
+
+  final String imagePath;
   final Size size;
 
   @override
@@ -62,8 +64,8 @@ class ImagePannel extends StatelessWidget {
                 ),
                 image: DecorationImage(
                   alignment: Alignment.centerLeft,
-                  fit: BoxFit.cover,
-                  image: AssetImage('assets/images/img.png'),
+                 // fit: BoxFit.cover,
+                  image: AssetImage(imagePath),
                 ),
               ),
             ),

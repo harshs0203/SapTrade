@@ -148,7 +148,7 @@ class _AdditionalInformationState extends State<AdditionalInformation> {
                       borderRadius: BorderRadius.circular(18.0),
                     ),
                     onPressed: () async {
-                      await DatabaseServices(uid: inputData())
+                      await DatabaseServices(uid: inputData(), plantId: plantId)
                           .sendingSellerInformation(
                         name: name,
                         location: location,
@@ -161,7 +161,6 @@ class _AdditionalInformationState extends State<AdditionalInformation> {
                         wind: wind,
                         price: price,
                         others: otherInformation,
-                        plantId: plantId,
                       );
                       Navigator.push(
                         context,

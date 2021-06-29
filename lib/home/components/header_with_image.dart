@@ -38,6 +38,10 @@ class HeaderWithImage extends StatelessWidget {
                 ),
               ],
             ),
+            child: Image.asset(
+              'assets/images/LOGO1.png',
+              height: 700,
+            ),
           ),
         ],
       ),

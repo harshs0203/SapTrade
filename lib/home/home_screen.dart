@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:sap_trade/sale/Screens/PersonalDetails.dart';
 import 'package:sap_trade/home/components/body.dart';
+import 'package:sap_trade/modals/sellers.dart';
+import 'package:sap_trade/sale/Screens/PersonalDetails.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sap_trade/services/database/dataBaseServices.dart';
 import 'components/BottomNavigationBar.dart';
@@ -13,18 +13,33 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-  @override
-  void initState() {
-    DatabaseServices().fetchingSellerInfo();
-    super.initState();
-  }
+   Seller seller = Seller();
+   List<Seller> listSeller = List();
+  // @override
+  // void initState() {
+  //   DatabaseServices().fetchSellerInfo().then((value) {
+   //               seller = value;
+   //             });
+  //   DatabaseServices().fetchSellerInfo();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
-      body: Body(),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: DatabaseServices().plantCollection.snapshots(),
+        builder: (context, snapshot)  {
+          if (snapshot.hasData) {
+            DatabaseServices().fetchSellerInfo().then((value) {
+                seller = value;
+                listSeller.add(seller);
+            });
+          }
+         return Body(sellers: listSeller);
+        },
+      ),
       bottomNavigationBar: BottomBar(),
     );
   }

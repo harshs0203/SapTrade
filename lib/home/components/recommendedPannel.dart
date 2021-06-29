@@ -1,56 +1,54 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sap_trade/detail/detailScreen.dart';
+import 'package:sap_trade/modals/sellers.dart';
 
 import '../../constants.dart';
 
-class recommendedPannel extends StatelessWidget {
-  const recommendedPannel({
-    Key key,
+class RecommendedPanel extends StatelessWidget {
+  const RecommendedPanel({
+    Key key, this.listSellers,
   }) : super(key: key);
+  final List<Seller> listSellers;
+
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          RecommendedCard(
-            image: 'assets/images/image_1.png',
-            title: 'customer 1',
-            location: 'location',
-            price: 100,
-            press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailScreen(),
-                ),
-              );
-            },
+    return Row(
+      children: [
+        Expanded(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.35,
+            child: ListView.builder(
+             scrollDirection: Axis.horizontal,
+              itemCount: listSellers.length,
+              itemBuilder: (context, index) {
+                return RecommendedCard(
+                      image: listSellers[index].imageURL,
+                      title: listSellers[index].name,
+                      location: listSellers[index].location,
+                      price: listSellers[index].price,
+                      press: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailScreen(listSeller:  listSellers),
+                          ),
+                        );
+                      },
+                    );
+              },
+            ),
           ),
-          RecommendedCard(
-            image: 'assets/images/image_2.png',
-            title: 'customer 1',
-            location: 'location',
-            price: 100,
-            press: () {},
-          ),
-          RecommendedCard(
-            image: 'assets/images/image_3.png',
-            title: 'customer 1',
-            location: 'location',
-            price: 100,
-            press: () {},
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
 
 class RecommendedCard extends StatelessWidget {
   final String image, title, location;
-  final int price;
+  final String price;
   final Function press;
 
   const RecommendedCard(
@@ -97,7 +95,7 @@ class RecommendedCard extends StatelessWidget {
                           style: Theme.of(context).textTheme.button,
                         ),
                         TextSpan(
-                          text: location.toUpperCase(),
+                          text: location.toUpperCase() + '\n',
                           style: TextStyle(
                             color: kPrimaryColor.withOpacity(0.5),
                           ),
