@@ -1,18 +1,25 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sap_trade/detail/components/animated_container.dart';
 
 import '../../constants.dart';
 import 'IconCard.dart';
 
-class ImagePannel extends StatelessWidget {
-  const ImagePannel({
+class ImagePanel extends StatelessWidget {
+  const ImagePanel.ImagePanel({
     Key key,
-    @required this.size, this.imagePath,
+    @required this.size, this.imagePath, this.sun, this.moist, this.wind, this.water,
   }) : super(key: key);
 
 
   final String imagePath;
+
   final Size size;
+  final String sun;
+  final String moist;
+  final String wind;
+  final String water;
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +46,10 @@ class ImagePannel extends StatelessWidget {
                           }),
                     ),
                     Spacer(),
-                    IconCard(image: 'assets/icons/sun.svg',),
-                    IconCard(image: 'assets/icons/icon_2.svg',),
-                    IconCard(image: 'assets/icons/icon_3.svg',),
-                    IconCard(image: 'assets/icons/icon_4.svg',),
+                    AnimatedProperties(image: 'assets/icons/sun.svg',iconText: sun,),
+                    AnimatedProperties(image: 'assets/icons/icon_2.svg',iconText: moist,),
+                    AnimatedProperties(image: 'assets/icons/icon_3.svg',iconText: water,),
+                    AnimatedProperties(image: 'assets/icons/icon_4.svg',iconText: wind,),
                   ],
                 ),
               ),

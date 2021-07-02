@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:sap_trade/constants.dart';
+import 'package:sap_trade/detail/components/animated_container.dart';
+import 'package:sap_trade/detail/components/image_pannel.dart';
 import 'package:sap_trade/home/components/body.dart';
 import 'package:sap_trade/modals/sellers.dart';
-import 'package:sap_trade/sale/Screens/PersonalDetails.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sap_trade/services/database/dataBaseServices.dart';
 import 'components/BottomNavigationBar.dart';
 
@@ -13,31 +14,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-   Seller seller = Seller();
-   List<Seller> listSeller = List();
-  // @override
-  // void initState() {
-  //   DatabaseServices().fetchSellerInfo().then((value) {
-   //               seller = value;
-   //             });
-  //   DatabaseServices().fetchSellerInfo();
-  //   super.initState();
-  // }
+  Seller seller = Seller();
+  CollectionReference dbService = new DatabaseServices().plantCollection;
+
+  //List<Seller> listSeller = List();
+  List<dynamic> plants = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context),
       body: StreamBuilder<QuerySnapshot>(
-        stream: DatabaseServices().plantCollection.snapshots(),
-        builder: (context, snapshot)  {
-          if (snapshot.hasData) {
-            DatabaseServices().fetchSellerInfo().then((value) {
-                seller = value;
-                listSeller.add(seller);
-            });
+        stream: dbService.snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(
+                color: kPrimaryColor,
+              ),
+            );
           }
-         return Body(sellers: listSeller);
+
+          final List plants =
+              snapshot.data.docs.map((plant) => plant.data()).toList();
+
+         return Body(sellers: plants);
         },
       ),
       bottomNavigationBar: BottomBar(),
@@ -45,21 +45,3 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-AppBar buildAppBar(context) {
-  return AppBar(
-    elevation: 0,
-    leading: Row(
-      children: [
-        IconButton(
-          icon: SvgPicture.asset("assets/icons/menu.svg"),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PersonalDetail()),
-            );
-          },
-        ),
-      ],
-    ),
-  );
-}

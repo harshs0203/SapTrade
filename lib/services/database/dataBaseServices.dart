@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:sap_trade/modals/sellers.dart';
 
 class DatabaseServices {
@@ -74,6 +75,7 @@ class DatabaseServices {
       'moisture': moist,
       'water': water,
       'wind': wind,
+      'timestamp' : FieldValue.serverTimestamp(),
     });
   }
 
@@ -94,30 +96,29 @@ class DatabaseServices {
     });
   }
 
-  Future<Seller> fetchSellerInfo() async {
-    Seller seller = Seller();
-
-    await for (var snapshot in plantCollection.snapshots()) {
-      for (var sellerInfo in snapshot.docs) {
-        Map<String, dynamic> sell = sellerInfo.get('seller information');
-
-        seller.name = sell['name'];
-        seller.location = sell['location'];
-        seller.address = sell['address'];
-        seller.phoneNumber = sell['phoneNumber'];
-
-        seller.imageURL = sellerInfo.get('imageURL');
-        seller.sunlight = sellerInfo.get('sunlight');
-        seller.moisture = sellerInfo.get('moisture');
-        seller.water = sellerInfo.get('water');
-        seller.wind = sellerInfo.get('wind');
-        seller.price = sellerInfo.get('price');
-        seller.otherInformation = sellerInfo.get('otherInformation');
-        print(seller.location);
-        return seller;
-      }
-      return seller;
-    }
-    return seller;
-  }
+  // Future<List<Seller>> fetchSellerInfo(Iterable<QueryDocumentSnapshot<Object>> snapshot) async {
+  //
+  //   Seller seller = Seller();
+  //   List<Seller> listSeller = [];
+  //
+  //     for (var plantInfo in snapshot) {
+  //       Map<String, dynamic> sell = plantInfo.get('seller information');
+  //
+  //       seller.name = sell['name'];
+  //       seller.location = sell['location'];
+  //       seller.address = sell['address'];
+  //       seller.phoneNumber = sell['phoneNumber'];
+  //
+  //       seller.imageURL = plantInfo.get('imageURL');
+  //       seller.sunlight = plantInfo.get('sunlight');
+  //       seller.moisture = plantInfo.get('moisture');
+  //       seller.water = plantInfo.get('water');
+  //       seller.wind = plantInfo.get('wind');
+  //       seller.price = plantInfo.get('price');
+  //       seller.otherInformation = plantInfo.get('otherInformation');
+  //
+  //       listSeller.add(seller);
+  //       return listSeller;
+  //    }
+  // }
 }

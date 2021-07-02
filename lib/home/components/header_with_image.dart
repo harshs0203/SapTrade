@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sap_trade/sale/Screens/PersonalDetails.dart';
 import '../../constants.dart';
 
 class HeaderWithImage extends StatelessWidget {
@@ -14,16 +16,17 @@ class HeaderWithImage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: kDefaultPadding * 0.5),
       // It will cover 20% of our total height
-      height: size.height * 0.2,
+      height: size.height * 0.25,
+      width: size.width,
       child: Stack(
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(
-              left: kDefaultPadding,
+              top: kDefaultPadding * 2.5,
               right: kDefaultPadding,
               bottom: 36 + kDefaultPadding,
             ),
-            height: size.height * 0.2 - 27,
+            width: size.width,
             decoration: BoxDecoration(
               color: kPrimaryColor,
               borderRadius: BorderRadius.only(
@@ -38,9 +41,27 @@ class HeaderWithImage extends StatelessWidget {
                 ),
               ],
             ),
-            child: Image.asset(
-              'assets/images/LOGO1.png',
-              height: 700,
+            child: Row(
+              children: [
+                Column(
+                  children: [
+                    IconButton(
+                      icon: SvgPicture.asset("assets/icons/menu.svg"),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PersonalDetail()),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                SizedBox(width: size.width * 0.16,),
+                Image.asset(
+                  'assets/images/LOGO1.png',
+                  height: size.height * 0.5,
+                ),
+              ],
             ),
           ),
         ],

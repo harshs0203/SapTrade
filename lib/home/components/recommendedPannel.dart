@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sap_trade/detail/detailScreen.dart';
-import 'package:sap_trade/modals/sellers.dart';
 
 import '../../constants.dart';
 
 class RecommendedPanel extends StatelessWidget {
   const RecommendedPanel({
-    Key key, this.listSellers,
+    Key key,
+    this.listSellers,
   }) : super(key: key);
-  final List<Seller> listSellers;
 
+  final List listSellers;
 
   @override
   Widget build(BuildContext context) {
@@ -20,23 +20,24 @@ class RecommendedPanel extends StatelessWidget {
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.35,
             child: ListView.builder(
-             scrollDirection: Axis.horizontal,
+              scrollDirection: Axis.horizontal,
               itemCount: listSellers.length,
               itemBuilder: (context, index) {
                 return RecommendedCard(
-                      image: listSellers[index].imageURL,
-                      title: listSellers[index].name,
-                      location: listSellers[index].location,
-                      price: listSellers[index].price,
-                      press: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailScreen(listSeller:  listSellers),
-                          ),
-                        );
-                      },
+                  image: listSellers[index]['imageURL'].toString(),
+                  title: listSellers[index]['seller information']['name'].toString(),
+                  location: listSellers[index]['seller information']['location'].toString(),
+                  price: listSellers[index]['price'].toString(),
+                  press: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            DetailScreen(listSeller: listSellers, index: index),
+                      ),
                     );
+                  },
+                );
               },
             ),
           ),
@@ -45,6 +46,7 @@ class RecommendedPanel extends StatelessWidget {
     );
   }
 }
+
 
 class RecommendedCard extends StatelessWidget {
   final String image, title, location;

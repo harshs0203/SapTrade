@@ -9,7 +9,7 @@ import 'FeaturePannel.dart';
 class Body extends StatelessWidget {
   const Body({Key key, this.sellers}) : super(key: key);
 
-  final List<Seller> sellers;
+  final List sellers;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class Body extends StatelessWidget {
           HeaderWithImage(size: size), //no data required
           TitleWithMoreBtn(
               title: "Recommended", press: () {}), // no data required
-          RecommendedPanel(listSellers: sellers,), //REQUIRED
+          RecommendedPanel(listSellers: sellers), //REQUIRED
           TitleWithMoreBtn(
             title: 'Featured Plants',
             press: () {},
@@ -35,3 +35,4 @@ class Body extends StatelessWidget {
     );
   }
 }
+
