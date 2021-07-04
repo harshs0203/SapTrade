@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sap_trade/buy/buyScreen.dart';
+import 'package:sap_trade/detail/components/showDetails.dart';
 import 'package:sap_trade/detail/components/title_price.dart';
 import '../../constants.dart';
 import 'image_pannel.dart';
@@ -59,7 +60,20 @@ class Body extends StatelessWidget {
               ),
               Expanded(
                 child: FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) => SingleChildScrollView(
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                bottom: MediaQuery.of(context).viewInsets.bottom),
+                            child: ShowDetails(details: listSeller[index]['otherInformation'].toString() ,addTaskCallBack: (newTaskTile){
+                              Navigator.pop(context);
+                            }),
+                          ),
+                        ));
+                  },
                   child: Text("Description"),
                 ),
               ),

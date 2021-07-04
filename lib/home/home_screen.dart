@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sap_trade/constants.dart';
-import 'package:sap_trade/detail/components/animated_container.dart';
 import 'package:sap_trade/detail/components/image_pannel.dart';
 import 'package:sap_trade/home/components/body.dart';
 import 'package:sap_trade/modals/sellers.dart';
@@ -33,11 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             );
           }
-
-          final List plants =
-              snapshot.data.docs.map((plant) => plant.data()).toList();
-
-         return Body(sellers: plants);
+            final List plants =
+            snapshot.data.docs.map((plant) => plant.data()).toList();
+          return Body(sellers: plants);
         },
       ),
       bottomNavigationBar: BottomBar(),
