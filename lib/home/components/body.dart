@@ -7,9 +7,10 @@ import '../../constants.dart';
 import 'FeaturePannel.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key key, this.sellers}) : super(key: key);
+  const Body({Key key, this.sellers, this.hasData}) : super(key: key);
 
   final List sellers;
+  final bool hasData;
 
   @override
   Widget build(BuildContext context) {

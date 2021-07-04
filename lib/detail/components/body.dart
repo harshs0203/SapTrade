@@ -46,7 +46,7 @@ class Body extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BuyScreen()),
+                      MaterialPageRoute(builder: (context) => BuyScreen(plantId: listSeller[index]['plantId'])),
                     );
                   },
                   child: Text(
@@ -83,4 +83,8 @@ class Body extends StatelessWidget {
       ),
     );
   }
+
+
+
+
 }

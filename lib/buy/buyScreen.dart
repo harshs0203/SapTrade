@@ -7,8 +7,14 @@ import '../constants.dart';
 
 class BuyScreen extends StatefulWidget {
 
+
+final plantId;
+
+  const BuyScreen({Key key, this.plantId}) : super(key: key);
+
   @override
-  _BuyScreenState createState() => _BuyScreenState();
+  _BuyScreenState createState() => _BuyScreenState(plantId);
+
 }
 
 
@@ -16,13 +22,15 @@ class _BuyScreenState extends State<BuyScreen> {
 
    FirebaseAuth auth = FirebaseAuth.instance;
    Buyer _buyer  = Buyer();
-
+   final plantId;
    String name;
    String location;
    String address;
    String phone;
-   dynamic plantId;
    String price;
+
+  _BuyScreenState(this.plantId);
+
 
   inputData() {
     final User user = auth.currentUser;
@@ -233,14 +241,14 @@ class _BuyScreenState extends State<BuyScreen> {
                       borderRadius: BorderRadius.circular(18.0),
                     ),
                     onPressed: () async {
-                      await DatabaseServices(uid: inputData())
+                      await DatabaseServices(plantId: plantId,uid: inputData())
                           .sendingBuyerInformation(
                         name: name,
                         location: location,
                         address: address,
                         phone: phone,
                         offeredPrice: price,
-                        plantId: plantId
+                        userId: inputData(),
                       );
                       Navigator.pop(context);
                     },

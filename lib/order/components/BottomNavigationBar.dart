@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:sap_trade/order/orderScreen.dart';
 import 'package:sap_trade/services/authentication/google_sign_in.dart';
 import 'package:sap_trade/services/database/dataBaseServices.dart';
 import 'package:sap_trade/welcome/splash_screen.dart';
@@ -38,10 +37,7 @@ class BottomBar extends StatelessWidget {
           IconButton(
               icon: SvgPicture.asset('assets/icons/user-icon.svg'),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Order()),
-                );
+
               }),
           IconButton(
               icon: Icon(Icons.logout ,

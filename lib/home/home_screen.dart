@@ -16,7 +16,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Seller seller = Seller();
   CollectionReference dbService = new DatabaseServices().plantCollection;
 
-  //List<Seller> listSeller = List();
   List<dynamic> plants = [];
 
   @override
@@ -32,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             );
           }
+
             final List plants =
             snapshot.data.docs.map((plant) => plant.data()).toList();
           return Body(sellers: plants);
@@ -40,5 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomBar(),
     );
   }
+
 }
 

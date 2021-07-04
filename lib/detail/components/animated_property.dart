@@ -15,7 +15,7 @@ class AnimatedProperty extends StatefulWidget {
 
 
   @override
-  State<AnimatedProperty> createState() => _AnimatedPropertyState();
+  State<AnimatedProperty> createState() => _AnimatedPropertyState(image: image,iconText: iconText);
 }
 
 class _AnimatedPropertyState extends State<AnimatedProperty> {
@@ -61,12 +61,12 @@ class _AnimatedPropertyState extends State<AnimatedProperty> {
             //height: size.height * 0.5,
                   child: Row(
                     children: [
-                      SvgPicture.asset('assets/icons/sun.svg'),
+                      SvgPicture.asset(image),
                       SizedBox(
                         width: 5,
                       ),
                       Text(
-                        "Very High",
+                        iconText,
                         style: TextStyle(
                           fontSize: 15.0,
                           fontWeight: FontWeight.bold,
@@ -77,7 +77,7 @@ class _AnimatedPropertyState extends State<AnimatedProperty> {
                   ),
                 )
               : Container(
-                  child: SvgPicture.asset('assets/icons/sun.svg'),
+                  child: SvgPicture.asset(image),
                 ),
         ),
       ),

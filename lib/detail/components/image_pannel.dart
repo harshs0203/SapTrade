@@ -47,16 +47,10 @@ class ImagePanel extends StatelessWidget {
                           }),
                     ),
                     Spacer(),
-                   //IconCard(image: 'assets/icons/sun.svg'),
-                    //AnimatedProperty(image: 'assets/icons/sun.svg', iconText: sun),
-                    Stack(
-                      children: [
-                        AnimatedProperty(image: imagePath, iconText: sun),
-                      ],
-                    )
-                    // AnimatedProperty(image: 'assets/icons/icon_2.svg',iconText: moist,),
-                    // AnimatedProperty(image: 'assets/icons/icon_3.svg',iconText: water,),
-                    // AnimatedProperty(image: 'assets/icons/icon_4.svg',iconText: wind,),
+                    AnimatedProperty(image: 'assets/icons/sun.svg', iconText: sun),
+                    AnimatedProperty(image: 'assets/icons/icon_2.svg',iconText: moist,),
+                    AnimatedProperty(image: 'assets/icons/icon_3.svg',iconText: water,),
+                    AnimatedProperty(image: 'assets/icons/icon_4.svg',iconText: wind,)
                   ],
                 ),
               ),
@@ -65,13 +59,13 @@ class ImagePanel extends StatelessWidget {
               height: size.height * 0.8,
               width: size.width * 0.75,
               decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0, 10),
-                    blurRadius: 60,
-                    color: kPrimaryColor.withOpacity(0.30),
-                  ),
-                ],
+                // boxShadow: [
+                //   BoxShadow(
+                //     offset: Offset(0, 10),
+                //     blurRadius: 60,
+                //     color: kPrimaryColor.withOpacity(0.30),
+                //   ),
+                // ],
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(65),
                   bottomLeft: Radius.circular(65),
