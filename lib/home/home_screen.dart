@@ -23,16 +23,16 @@ class _HomeScreenState extends State<HomeScreen> {
       body: StreamBuilder<QuerySnapshot>(
         stream: dbService.orderBy('timestamp').snapshots(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData) {
+          if (snapshot.data == null)
             return Center(
               child: CircularProgressIndicator(
                 color: kPrimaryColor,
               ),
             );
-          }
 
-            final List plants =
-            snapshot.data.docs.map((plant) => plant.data()).toList();
+          final List plants =
+              snapshot.data.docs.map((plant) => plant.data()).toList();
+
           return Body(sellers: plants);
         },
       ),
@@ -40,4 +40,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-

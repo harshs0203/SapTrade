@@ -17,7 +17,6 @@ class Authentication extends StatelessWidget {
             if (provider.isSigningIn) {
               return buildLoading();
             } else if (snapshot.hasData) {
-              print('uid:' + FirebaseAuth.instance.currentUser.uid);
               return HomeScreen();
             } else {
               return SplashScreen();

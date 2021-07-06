@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../../constants.dart';
 
 class PersonalDetails extends StatelessWidget {
@@ -11,12 +10,44 @@ class PersonalDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FirebaseAuth auth = FirebaseAuth.instance;
-    final User user = auth.currentUser;
-    var image = user.photoURL;
-    var name = user.displayName;
-    var email = user.email;
-    var phone = user.phoneNumber;
 
+    return StreamBuilder<Object>(
+        stream: auth.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return PersonalCard(
+              image: auth.currentUser.photoURL.toString(),
+              name: auth.currentUser.displayName.toString(),
+              phone: auth.currentUser.phoneNumber.toString(),
+              email: auth.currentUser.email.toString(),
+            );
+          } else {
+            return PersonalCard(
+                image: null,
+                name: null,
+                phone: 'Not Provider By User',
+                email: 'Not Provider By User');
+          }
+        });
+  }
+}
+
+class PersonalCard extends StatelessWidget {
+  const PersonalCard({
+    Key key,
+    @required this.image,
+    @required this.name,
+    @required this.phone,
+    @required this.email,
+  }) : super(key: key);
+
+  final String image;
+  final String name;
+  final String phone;
+  final String email;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
           top: kDefaultPadding,
@@ -27,9 +58,7 @@ class PersonalDetails extends StatelessWidget {
       decoration: BoxDecoration(
         color: kPrimaryColor,
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
-        ),
+            bottomRight: Radius.circular(20), bottomLeft: Radius.circular(20)),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -44,7 +73,9 @@ class PersonalDetails extends StatelessWidget {
               Spacer(),
               Container(
                 padding: EdgeInsets.symmetric(
-                    vertical: kDefaultPadding / 2, horizontal: kDefaultPadding),
+                  vertical: kDefaultPadding / 2,
+                  horizontal: kDefaultPadding,
+                ),
                 alignment: Alignment.centerRight,
                 width: MediaQuery.of(context).size.width * 0.52,
                 decoration: BoxDecoration(
@@ -70,7 +101,7 @@ class PersonalDetails extends StatelessWidget {
                 color: Colors.teal,
               ),
               title: Text(
-                phone.isEmpty ? "Not Provided By User" : phone,
+                phone.toString(),
                 style: TextStyle(
                   color: Colors.teal.shade900,
                   fontSize: 18.0,

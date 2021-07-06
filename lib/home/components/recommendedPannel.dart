@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sap_trade/detail/detailScreen.dart';
-
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 import '../../constants.dart';
 
 class RecommendedPanel extends StatelessWidget {
@@ -61,6 +62,7 @@ class RecommendedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final img = Image.file(File(image));
     return Container(
       margin: EdgeInsets.only(
         left: kDefaultPadding,
@@ -78,7 +80,9 @@ class RecommendedCard extends StatelessWidget {
                   height: size.height * 0.189,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(image),
+                      image: (image == 'assets/images/plantDefault.png')
+                          ? AssetImage(image)
+                          : img.image,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -134,4 +138,11 @@ class RecommendedCard extends StatelessWidget {
       ),
     );
   }
+}
+
+gettingImage() async {
+  final Directory temp = await getTemporaryDirectory();
+  File imageFile = File('${temp.path}/images/someImageFile.png');
+
+  return imageFile;
 }
