@@ -32,7 +32,7 @@ class ImagePanel extends StatelessWidget {
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: kDefaultPadding * 4),
+                padding: EdgeInsets.symmetric(vertical: kDefaultPadding * 3),
                 child: Column(
                   children: [
                     Align(
@@ -55,25 +55,28 @@ class ImagePanel extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              height: size.height * 0.8,
-              width: size.width * 0.75,
-              decoration: BoxDecoration(
-                // boxShadow: [
-                //   BoxShadow(
-                //     offset: Offset(0, 10),
-                //     blurRadius: 60,
-                //     color: kPrimaryColor.withOpacity(0.30),
-                //   ),
-                // ],
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(65),
-                  bottomLeft: Radius.circular(65),
-                ),
-                image: DecorationImage(
-                  alignment: Alignment.centerLeft,
-                 // fit: BoxFit.cover,
-                  image: AssetImage(imagePath),
+            Padding(
+              padding: const EdgeInsets.only(top: kDefaultPadding * 2),
+              child: Container(
+                height: size.height * 0.8,
+                width: size.width * 0.75,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, 10),
+                      blurRadius: 60,
+                      color: kPrimaryColor.withOpacity(0.30),
+                    ),
+                  ],
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(65),
+                    bottomLeft: Radius.circular(65),
+                  ),
+                  image: DecorationImage(
+                    alignment: Alignment.centerLeft,
+                   // fit: BoxFit.cover,
+                    image: AssetImage(imagePath),
+                  ),
                 ),
               ),
             ),

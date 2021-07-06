@@ -25,8 +25,10 @@ class RecommendedPanel extends StatelessWidget {
               itemBuilder: (context, index) {
                 return RecommendedCard(
                   image: listSellers[index]['imageURL'].toString(),
-                  title: listSellers[index]['seller information']['name'].toString(),
-                  location: listSellers[index]['seller information']['location'].toString(),
+                  title: listSellers[index]['seller information']['name']
+                      .toString(),
+                  location: listSellers[index]['seller information']['location']
+                      .toString(),
                   price: listSellers[index]['price'].toString(),
                   press: () {
                     Navigator.push(
@@ -46,7 +48,6 @@ class RecommendedPanel extends StatelessWidget {
     );
   }
 }
-
 
 class RecommendedCard extends StatelessWidget {
   final String image, title, location;
@@ -69,52 +70,64 @@ class RecommendedCard extends StatelessWidget {
       width: size.width * 0.4,
       child: Column(
         children: [
-          Image.asset(image),
           GestureDetector(
             onTap: press,
-            child: Container(
-              padding: EdgeInsets.all(kDefaultPadding / 2),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, 10),
-                      blurRadius: 50,
-                      color: kPrimaryColor.withOpacity(0.3),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                  )),
-              child: Row(
-                children: [
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: title.toUpperCase() + '\n',
-                          style: Theme.of(context).textTheme.button,
-                        ),
-                        TextSpan(
-                          text: location.toUpperCase() + '\n',
-                          style: TextStyle(
-                            color: kPrimaryColor.withOpacity(0.5),
-                          ),
-                        ),
-                      ],
+            child: Column(
+              children: [
+                Container(
+                  height: size.height * 0.189,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(image),
+                      fit: BoxFit.fill,
                     ),
                   ),
-                  Spacer(),
-                  Text(
-                    '\₹$price',
-                    style: Theme.of(context)
-                        .textTheme
-                        .button
-                        .copyWith(color: kPrimaryColor),
-                  )
-                ],
-              ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(kDefaultPadding / 2),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, 10),
+                          blurRadius: 50,
+                          color: kPrimaryColor.withOpacity(0.3),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                      )),
+                  child: Row(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: title.toUpperCase() + '\n',
+                              style: Theme.of(context).textTheme.button,
+                            ),
+                            TextSpan(
+                              text: location.toUpperCase() + '\n',
+                              style: TextStyle(
+                                color: kPrimaryColor.withOpacity(0.5),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Spacer(),
+                      Text(
+                        '\₹$price',
+                        style: Theme.of(context)
+                            .textTheme
+                            .button
+                            .copyWith(color: kPrimaryColor),
+                      )
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ],

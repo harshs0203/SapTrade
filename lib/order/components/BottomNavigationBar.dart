@@ -13,9 +13,13 @@ class BottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Size size = MediaQuery.of(context).size;
+
     return Container(
-      padding: EdgeInsets.only(left: kDefaultPadding *2,
-        right: kDefaultPadding *2,
+      padding: EdgeInsets.only(
+        left: kDefaultPadding * 2,
+        right: kDefaultPadding * 2,
       ),
       height: 50,
       decoration: BoxDecoration(
@@ -32,20 +36,30 @@ class BottomBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-              icon: SvgPicture.asset('assets/icons/flower.svg'),
-              onPressed: () {}),
-          IconButton(
-              icon: SvgPicture.asset('assets/icons/user-icon.svg'),
+              icon: Icon(
+                Icons.filter_vintage,
+                color: Colors.grey[400],
+                size: size.aspectRatio * 80,
+              ),
               onPressed: () {
-
+                Navigator.pop(context);
               }),
           IconButton(
-              icon: Icon(Icons.logout ,
+              icon: Icon(
+                Icons.person,
+                color: kPrimaryColor,
+                size: size.aspectRatio * 80,
+              ),
+              onPressed: () {}),
+          IconButton(
+              icon: Icon(
+                Icons.logout,
                 color: Colors.grey[400],
+                size: size.aspectRatio * 80,
               ),
               onPressed: () {
                 final provider =
-                Provider.of<GoogleSignInProvider>(context, listen: false);
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
                 provider.logout();
                 Navigator.push(
                   context,

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sap_trade/constants.dart';
-import 'package:sap_trade/detail/components/image_pannel.dart';
 import 'package:sap_trade/home/components/body.dart';
 import 'package:sap_trade/modals/sellers.dart';
 import 'package:sap_trade/services/database/dataBaseServices.dart';
@@ -22,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder<QuerySnapshot>(
-        stream: dbService.snapshots(),
+        stream: dbService.orderBy('timestamp').snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(
@@ -40,6 +39,5 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomBar(),
     );
   }
-
 }
 

@@ -29,12 +29,12 @@ class _PlantDetailsState extends State<PlantDetails> {
   var plantId;
   PickedFile _imageFile;
   ImagePicker _picker = ImagePicker();
-  double sunVal = 50;
-  double humdVal = 50;
-  double watrVal = 50;
-  double windVal = 50;
+  double sunVal = 0;
+  double humdVal = 0;
+  double watrVal = 0;
+  double windVal = 0;
 
-  String label;
+  String label ;
   Seller sellerInformation = Seller();
 
   @override
@@ -275,10 +275,9 @@ class _PlantDetailsState extends State<PlantDetails> {
       label = 'High';
     } else if (currentSliderValue <= 100.0) {
       label = 'Very High';
-    } else {
+    }else {
       label = 'Invalid';
     }
-
     return label;
   }
 

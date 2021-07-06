@@ -14,6 +14,9 @@ class BottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Size size  = MediaQuery.of(context).size;
+
     return Container(
       padding: EdgeInsets.only(left: kDefaultPadding *2,
         right: kDefaultPadding *2,
@@ -33,10 +36,18 @@ class BottomBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-              icon: SvgPicture.asset('assets/icons/flower.svg'),
+              icon: Icon(
+                Icons.filter_vintage,
+                color: kPrimaryColor,
+                size: size.aspectRatio * 80,
+              ),
               onPressed: () {}),
           IconButton(
-              icon: SvgPicture.asset('assets/icons/user-icon.svg'),
+              icon: Icon(
+                Icons.person,
+                color: Colors.grey[400],
+                size: size.aspectRatio * 80,
+              ),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -46,6 +57,7 @@ class BottomBar extends StatelessWidget {
           IconButton(
               icon: Icon(Icons.logout ,
                 color: Colors.grey[400],
+                size: size.aspectRatio * 80,
               ),
               onPressed: () {
                 final provider =

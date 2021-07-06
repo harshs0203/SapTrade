@@ -155,10 +155,10 @@ class _AdditionalInformationState extends State<AdditionalInformation> {
                         address: address,
                         phone: phone,
                         image: imageURL,
-                        sun: sunlight,
-                        moist: humidity,
-                        water: water,
-                        wind: wind,
+                        sun:  checkingNullValue(sunlight),
+                        moist:  checkingNullValue(humidity),
+                        water: checkingNullValue(water),
+                        wind:  checkingNullValue(wind),
                         price: price,
                         others: otherInformation,
                       );
@@ -175,4 +175,13 @@ class _AdditionalInformationState extends State<AdditionalInformation> {
       ),
     );
   }
+
+  checkingNullValue(String value){
+    if(value == null){
+      return 'Very Low';
+    }else{
+      return value;
+    }
+  }
+
 }
