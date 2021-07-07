@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _timer = new Timer(Duration(seconds: 5),
+    _timer = new Timer(Duration(seconds: 2),
             () => Navigator.push(
             context, PageRouteBuilder(transitionDuration: Duration(seconds: 2) , pageBuilder: (_,__,___)=> LoginScreen())));
   }

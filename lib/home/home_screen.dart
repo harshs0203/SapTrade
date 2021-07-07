@@ -19,24 +19,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: StreamBuilder<QuerySnapshot>(
         stream: dbService.orderBy('timestamp').snapshots(),
         builder: (context, snapshot) {
-          if (snapshot.data == null)
-            return Center(
-              child: CircularProgressIndicator(
-                color: kPrimaryColor,
-              ),
-            );
-
-          final List plants =
+            if (!snapshot.hasData) {
+              return Center(
+                child: CircularProgressIndicator(
+                  color: kPrimaryColor,
+                ),
+              );
+            }else{
+              final List plants =
               snapshot.data.docs.map((plant) => plant.data()).toList();
-
-          return Body(sellers: plants);
+              return Body(sellers: plants);
+            }
         },
       ),
       bottomNavigationBar: BottomBar(),
     );
   }
+
 }

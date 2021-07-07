@@ -2,10 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sap_trade/constants.dart';
 import 'package:sap_trade/order/components/buyerData.dart';
 import 'package:sap_trade/order/components/personalDetails.dart';
 import 'package:sap_trade/order/components/sellerData.dart';
+import 'package:sap_trade/services/authentication/google_sign_in.dart';
 import 'package:sap_trade/services/database/dataBaseServices.dart';
 
 class Body extends StatefulWidget {
@@ -21,13 +23,14 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
 
+    final provider = Provider.of<GoogleSignInProvider>(context);
     final FirebaseAuth auth = FirebaseAuth.instance;
-    final User user = auth.currentUser;
-    String uid = user.uid;
+    String uid;
 
-    // StreamBuilder<Object>(
-    //     stream: auth.authStateChanges(),
-    // builder: (context, snapshot) {
+    setState(() {
+      uid = auth.currentUser == null ? provider.googleSignIn.clientId : auth.currentUser.uid;
+      return uid;
+    });
 
     return StreamBuilder<Object>(
       stream: auth.authStateChanges(),
@@ -36,8 +39,6 @@ class _BodyState extends State<Body> {
         body: Padding(
           padding: EdgeInsets.only(
             top: kDefaultPadding * 2,
-            //right: kDefaultPadding,
-            //left: kDefaultPadding,
           ),
           child: SingleChildScrollView(
             child: Column(
@@ -52,7 +53,7 @@ class _BodyState extends State<Body> {
                   ),
                 ),
                 StreamBuilder<QuerySnapshot>(
-                  stream: buyerDB.where('userId', isEqualTo: uid).snapshots(),
+                  stream: buyerDB.where('userId', isEqualTo: uid).snapshots() ,
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       return Center(

@@ -9,24 +9,21 @@ class PersonalDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final FirebaseAuth auth = FirebaseAuth.instance;
 
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User user = auth.currentUser;
     return StreamBuilder<Object>(
         stream: auth.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return PersonalCard(
-              image: auth.currentUser.photoURL.toString(),
-              name: auth.currentUser.displayName.toString(),
-              phone: auth.currentUser.phoneNumber.toString(),
-              email: auth.currentUser.email.toString(),
+              image: user.photoURL == null ? '' :user.photoURL.toString(),
+              name: user.displayName == null ? '' :user.displayName.toString(),
+              phone: user.phoneNumber == null ? '' :user.phoneNumber.toString(),
+              email: user.email == null ? '' :user.email.toString(),
             );
           } else {
-            return PersonalCard(
-                image: null,
-                name: null,
-                phone: 'Not Provider By User',
-                email: 'Not Provider By User');
+            return PersonalCard(image: '',name: '', phone: '',email: '',);
           }
         });
   }
@@ -68,7 +65,7 @@ class PersonalCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 60.0,
-                backgroundImage: NetworkImage(image),
+                backgroundImage: image.isEmpty ? null : NetworkImage(image),
               ),
               Spacer(),
               Container(
@@ -83,7 +80,7 @@ class PersonalCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
-                  name,
+                  name.isEmpty ? 'User' : name.toString(),
                   style: TextStyle(
                     color: Colors.teal.shade700,
                     fontWeight: FontWeight.bold,
@@ -101,7 +98,7 @@ class PersonalCard extends StatelessWidget {
                 color: Colors.teal,
               ),
               title: Text(
-                phone.toString(),
+                phone.isEmpty ? 'Not Provided By The User' : phone.toString(),
                 style: TextStyle(
                   color: Colors.teal.shade900,
                   fontSize: 18.0,
@@ -117,7 +114,7 @@ class PersonalCard extends StatelessWidget {
                 color: Colors.teal,
               ),
               title: Text(
-                email,
+                email.isEmpty ? 'Not Provided By The User' : email.toString(),
                 style: TextStyle(
                   color: Colors.teal.shade900,
                   fontSize: 18.0,
