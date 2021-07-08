@@ -35,7 +35,7 @@ class _PersonalDetailState extends State<PersonalDetail> {
         child: Padding(
           padding: const EdgeInsets.only(
             right: kDefaultPadding,
-            left: kDefaultPadding / 2,
+            left: kDefaultPadding ,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

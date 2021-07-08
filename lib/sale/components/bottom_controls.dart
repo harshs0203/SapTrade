@@ -18,12 +18,8 @@ class BottomControls extends StatelessWidget {
       children: [
         Stack(
           children: [
-            CircleAvatar(
-              backgroundColor: kPrimaryColor,
-              radius: 35,
-            ),
             IconButton(
-                color: Colors.white,
+                color: kPrimaryColor,
                 alignment: Alignment.center,
                 icon: Icon(
                   Icons.arrow_back,
@@ -34,17 +30,11 @@ class BottomControls extends StatelessWidget {
                 }),
           ],
         ),
-        SizedBox(
-          width: size.width * 0.557,
-        ),
+        Spacer(),
         Stack(
           children: [
-            CircleAvatar(
-              backgroundColor: kPrimaryColor,
-              radius: 35,
-            ),
             IconButton(
-                color: Colors.white,
+                color: kPrimaryColor,
                 alignment: Alignment.center,
                 icon: Icon(
                   Icons.arrow_forward,

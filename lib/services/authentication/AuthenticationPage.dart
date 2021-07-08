@@ -25,15 +25,14 @@ class Authentication extends StatelessWidget {
     );
   }
 
-  Widget buildLoading() => Stack(
-        fit: StackFit.expand,
-        children: [
-          Center(
-            child: CircularProgressIndicator(
-              backgroundColor: kPrimaryColor,
-            ),
-          ),
-        ],
+  Widget buildLoading() => Scaffold(
+    body: Container(
+      child: Center(
+        child: CircularProgressIndicator(
+          color: kPrimaryColor,
+        ),
+      ),
+    ),
       );
 }
 
