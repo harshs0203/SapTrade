@@ -27,7 +27,7 @@ class SellerData extends StatelessWidget {
             return Card(
               elevation: 2.0,
               margin:
-              EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+              EdgeInsets.symmetric(vertical: 5.0,horizontal: 20.0),
               child: ListTile(
                 onTap: (){
                   Navigator.push(
@@ -38,7 +38,7 @@ class SellerData extends StatelessWidget {
                 title: Row(
                   children: [
                     Text(
-                      sellerOrder[index]['seller information']['name']
+                      sellerOrder[index]['seller information']['Plant Name']
                           .toString(),
                       style: TextStyle(color: kPrimaryColor),
                     ),

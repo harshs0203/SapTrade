@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sap_trade/order/orderScreen.dart';
+import 'package:sap_trade/sale/Screens/PersonalDetails.dart';
 import 'package:sap_trade/services/authentication/google_sign_in.dart';
 import 'package:sap_trade/services/database/dataBaseServices.dart';
 import 'package:sap_trade/welcome/splash_screen.dart';
@@ -39,33 +40,32 @@ class BottomBar extends StatelessWidget {
               icon: Icon(
                 Icons.filter_vintage,
                 color: kPrimaryColor,
-                size: size.aspectRatio * 80,
+                size: size.aspectRatio * 60,
               ),
               onPressed: () {}),
+          IconButton(
+            icon: Icon(
+              Icons.add,
+              color: Colors.grey[400],
+              size: size.aspectRatio * 60,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PersonalDetail()),
+              );
+            },
+          ),
           IconButton(
               icon: Icon(
                 Icons.person,
                 color: Colors.grey[400],
-                size: size.aspectRatio * 80,
+                size: size.aspectRatio * 60,
               ),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Order()),
-                );
-              }),
-          IconButton(
-              icon: Icon(Icons.logout ,
-                color: Colors.grey[400],
-                size: size.aspectRatio * 80,
-              ),
-              onPressed: () {
-                final provider =
-                Provider.of<GoogleSignInProvider>(context, listen: false);
-                provider.logout();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SplashScreen()),
                 );
               }),
         ],

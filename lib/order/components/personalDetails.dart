@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sap_trade/services/authentication/google_sign_in.dart';
+import 'package:sap_trade/welcome/splash_screen.dart';
 import '../../constants.dart';
 
 class PersonalDetails extends StatelessWidget {
@@ -45,6 +48,9 @@ class PersonalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Size size = MediaQuery.of(context).size;
+
     return Container(
       padding: EdgeInsets.only(
           top: kDefaultPadding,
@@ -60,51 +66,32 @@ class PersonalCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              CircleAvatar(
-                radius: 60.0,
-                backgroundImage: image.isEmpty ? null : NetworkImage(image),
-              ),
-              Spacer(),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  vertical: kDefaultPadding / 2,
-                  horizontal: kDefaultPadding,
-                ),
-                alignment: Alignment.centerRight,
-                width: MediaQuery.of(context).size.width * 0.52,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(
-                  name.isEmpty ? 'User' : name.toString(),
-                  style: TextStyle(
-                    color: Colors.teal.shade700,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30.0,
-                  ),
-                ),
-              ),
-            ],
+          CircleAvatar(
+            radius: 60.0,
+            backgroundImage: image.isEmpty ? null : NetworkImage(image),
+          ),
+          SizedBox(
+            height: size.height *0.03,
           ),
           Card(
-            margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+            margin: EdgeInsets.symmetric(horizontal: 20.0),
             child: ListTile(
               leading: Icon(
-                Icons.phone,
+                Icons.person,
                 color: Colors.teal,
               ),
               title: Text(
-                phone.isEmpty ? 'Not Provided By The User' : phone.toString(),
+                name.isEmpty ? 'User' : name.toString(),
                 style: TextStyle(
-                  color: Colors.teal.shade900,
-                  fontSize: 18.0,
+                  color: Colors.teal.shade700,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0,
                 ),
               ),
             ),
+          ),
+          SizedBox(
+            height: size.height *0.03,
           ),
           Card(
             margin: EdgeInsets.symmetric(horizontal: 20.0),

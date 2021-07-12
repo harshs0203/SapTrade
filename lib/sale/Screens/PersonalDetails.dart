@@ -16,9 +16,9 @@ class _PersonalDetailState extends State<PersonalDetail> {
   GlobalKey<FormState> _formKey;
   Seller sellerInformation = Seller();
 
-  String name;
+  String plantName;
   String location;
-  String address;
+  String sellerName;
   String phone;
 
   @override
@@ -35,10 +35,11 @@ class _PersonalDetailState extends State<PersonalDetail> {
         child: Padding(
           padding: const EdgeInsets.only(
             right: kDefaultPadding,
-            left: kDefaultPadding ,
+            left: kDefaultPadding,
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: size.height * 0.05,
@@ -60,12 +61,14 @@ class _PersonalDetailState extends State<PersonalDetail> {
                   Form(
                     key: _formKey,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Name',
+                          'Plant Name',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
+                            fontFamily: 'Otomanopee',
                           ),
                         ),
                         SizedBox(
@@ -79,16 +82,15 @@ class _PersonalDetailState extends State<PersonalDetail> {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
+                              return 'Please enter your plant\'s name';
                             }
                             return null;
                           },
                           onChanged: (text) {
                             setState(() {
-                              name = text;
-                              sellerInformation.name = name;
+                              plantName = text;
+                              sellerInformation.plantName = plantName;
                             });
-                            print('Name of Seller :' + sellerInformation.name);
                           },
                         ),
                         SizedBox(
@@ -112,7 +114,7 @@ class _PersonalDetailState extends State<PersonalDetail> {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
+                              return 'Please enter your location';
                             }
                             return null;
                           },
@@ -121,13 +123,13 @@ class _PersonalDetailState extends State<PersonalDetail> {
                               location = text;
                               sellerInformation.location = location;
                             });
-                            print('location of Seller :' + sellerInformation.location);
                           },
                         ),
                         SizedBox(
                           height: size.height * 0.01,
-                        ),Text(
-                          'Address',
+                        ),
+                        Text(
+                          'Seller\'s Name',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
@@ -144,21 +146,21 @@ class _PersonalDetailState extends State<PersonalDetail> {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
+                              return 'Please enter your name';
                             }
                             return null;
                           },
                           onChanged: (text) {
                             setState(() {
-                              address = text;
-                              sellerInformation.address = address;
+                              sellerName = text;
+                              sellerInformation.sellerName = sellerName;
                             });
-                            print('Address of Seller :' + sellerInformation.address);
                           },
                         ),
                         SizedBox(
                           height: size.height * 0.01,
-                        ),Text(
+                        ),
+                        Text(
                           'Phone Number',
                           style: TextStyle(
                             fontSize: 20,
@@ -176,8 +178,12 @@ class _PersonalDetailState extends State<PersonalDetail> {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
+                              return 'Please enter you phone number';
                             }
+                            if (value.length > 10 || value.length < 10) {
+                              return 'Enter a valid Number';
+                            }
+
                             return null;
                           },
                           onChanged: (text) {
@@ -187,7 +193,7 @@ class _PersonalDetailState extends State<PersonalDetail> {
                             });
                           },
                         ),
-                       // FlatButton(onPressed: (){print(phone);}, child: Text('check')),
+                        // FlatButton(onPressed: (){print(phone);}, child: Text('check')),
                         SizedBox(
                           height: size.height * 0.01,
                         ),
@@ -200,7 +206,13 @@ class _PersonalDetailState extends State<PersonalDetail> {
                 height: size.height * 0.1,
               ),
               BottomControls(
-                  size: size, formKey: _formKey, nextScreen: PlantDetails(name: sellerInformation.name,location: sellerInformation.location,address: sellerInformation.address,phone: sellerInformation.phoneNumber)),
+                  size: size,
+                  formKey: _formKey,
+                  nextScreen: PlantDetails(
+                      plantName: sellerInformation.plantName,
+                      location: sellerInformation.location,
+                      name: sellerInformation.sellerName,
+                      phone: sellerInformation.phoneNumber)),
             ],
           ),
         ),

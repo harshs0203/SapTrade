@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sap_trade/sale/Screens/PersonalDetails.dart';
 import '../../constants.dart';
 
 class HeaderWithImage extends StatelessWidget {
@@ -23,7 +21,7 @@ class HeaderWithImage extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(
               top: kDefaultPadding * 2.5,
-              right: kDefaultPadding,
+              //right: kDefaultPadding,
               bottom: 36 + kDefaultPadding,
             ),
             width: size.width,
@@ -42,21 +40,8 @@ class HeaderWithImage extends StatelessWidget {
               ],
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Column(
-                  children: [
-                    IconButton(
-                      icon: SvgPicture.asset("assets/icons/menu.svg"),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PersonalDetail()),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-                SizedBox(width: size.width * 0.16,),
                 Image.asset(
                   'assets/images/LOGO1.png',
                   height: size.height * 0.5,

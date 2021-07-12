@@ -1,7 +1,7 @@
 class Seller{
-  String name;
+  String plantName;
   String location;
-  String address;
+  String sellerName;
   String phoneNumber;
   String imageURL;
   String sunlight;

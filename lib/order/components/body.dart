@@ -16,87 +16,132 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-
   CollectionReference sellerDB = new DatabaseServices().plantCollection;
   CollectionReference buyerDB = new DatabaseServices().buyerCollection;
 
   @override
   Widget build(BuildContext context) {
-
     final provider = Provider.of<GoogleSignInProvider>(context);
     final FirebaseAuth auth = FirebaseAuth.instance;
     String uid;
 
     setState(() {
-      uid = auth.currentUser == null ? provider.googleSignIn.clientId : auth.currentUser.uid;
+      uid = auth.currentUser == null
+          ? provider.googleSignIn.clientId
+          : auth.currentUser.uid;
       return uid;
     });
 
     return StreamBuilder<Object>(
       stream: auth.authStateChanges(),
-    builder: (context, snapshot) {
-      return Scaffold(
-        body: Padding(
-          padding: EdgeInsets.only(
-            top: kDefaultPadding * 2,
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                PersonalDetails(),
-                Text(
-                  'Buy Orders',
-                  style: TextStyle(
-                    fontSize: 50.0,
-                    fontWeight: FontWeight.bold,
+      builder: (context, snapshot) {
+        return Scaffold(
+          body: Padding(
+            padding: EdgeInsets.only(
+              top: kDefaultPadding * 2,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PersonalDetails(),
+                  Text(
+                    'Buy Orders',
+                    style: TextStyle(
+                      fontSize: 50.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                StreamBuilder<QuerySnapshot>(
-                  stream: buyerDB.where('userId', isEqualTo: uid).snapshots() ,
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: kPrimaryColor,
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Name',
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                      );
-                    }
-                    final List buyerOrder =
-                    snapshot.data.docs.map((plant) => plant.data()).toList();
-                    return BuyerData(buyerOrder: buyerOrder);
-                  },
-                ),
-                Text(
-                  'Sell Orders',
-                  style: TextStyle(
-                    fontSize: 50.0,
-                    fontWeight: FontWeight.bold,
+                        Spacer(),
+                        Text(
+                          'Location',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Spacer(),
+                        Text(
+                          'Offered Price',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                // OrderDetailsCard(),
-                StreamBuilder<QuerySnapshot>(
-                  stream: sellerDB.where(
-                      'seller information.userId', isEqualTo: uid).snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: kPrimaryColor,
+                  StreamBuilder<QuerySnapshot>(
+                    stream: buyerDB.where('userId', isEqualTo: uid).snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: kPrimaryColor,
+                          ),
+                        );
+                      }
+                      final List buyerOrder = snapshot.data.docs
+                          .map((plant) => plant.data())
+                          .toList();
+                      return BuyerData(buyerOrder: buyerOrder);
+                    },
+                  ),
+                  Text(
+                    'Sell Orders',
+                    style: TextStyle(
+                      fontSize: 50.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Plant Name',
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                      );
-                    }
-                    final List sellerOrder =
-                    snapshot.data.docs.map((plant) => plant.data()).toList();
-                    return SellerData(sellerOrder: sellerOrder);
-                  },
-                ),
-              ],
+                        Spacer(),
+                        Text(
+                          'Location',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Spacer(),
+                        Text(
+                          'Price',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // OrderDetailsCard(),
+                  StreamBuilder<QuerySnapshot>(
+                    stream: sellerDB
+                        .where('seller information.userId', isEqualTo: uid)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: kPrimaryColor,
+                          ),
+                        );
+                      }
+                      final List sellerOrder = snapshot.data.docs
+                          .map((plant) => plant.data())
+                          .toList();
+                      return SellerData(sellerOrder: sellerOrder);
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      );
-    },
+        );
+      },
     );
   }
 }

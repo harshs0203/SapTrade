@@ -7,9 +7,9 @@ import 'package:sap_trade/modals/sellers.dart';
 import 'package:sap_trade/services/database/dataBaseServices.dart';
 
 class AdditionalInformation extends StatefulWidget {
-  final String name;
+  final String plantName;
   final String location;
-  final String address;
+  final String name;
   final String phone;
   final dynamic plantId;
   final dynamic imageURL;
@@ -20,9 +20,9 @@ class AdditionalInformation extends StatefulWidget {
 
   const AdditionalInformation(
       {Key key,
-      this.name,
+      this.plantName,
       this.location,
-      this.address,
+      this.name,
       this.phone,
       this.plantId,
       this.imageURL,
@@ -34,9 +34,9 @@ class AdditionalInformation extends StatefulWidget {
 
   @override
   _AdditionalInformationState createState() => _AdditionalInformationState(
-      this.name,
+      this.plantName,
       this.location,
-      this.address,
+      this.name,
       this.phone,
       this.plantId,
       this.imageURL,
@@ -47,9 +47,9 @@ class AdditionalInformation extends StatefulWidget {
 }
 
 class _AdditionalInformationState extends State<AdditionalInformation> {
-  final String name;
+  final String plantName;
   final String location;
-  final String address;
+  final String name;
   final String phone;
   final dynamic plantId;
   final dynamic imageURL;
@@ -69,9 +69,9 @@ class _AdditionalInformationState extends State<AdditionalInformation> {
   }
 
   _AdditionalInformationState(
-      this.name,
+      this.plantName,
       this.location,
-      this.address,
+      this.name,
       this.phone,
       this.plantId,
       this.imageURL,
@@ -150,9 +150,9 @@ class _AdditionalInformationState extends State<AdditionalInformation> {
                     onPressed: () async {
                       await DatabaseServices(uid: inputData(), plantId: plantId)
                           .sendingSellerInformation(
-                        name: name,
+                        plantName: plantName,
                         location: location,
-                        address: address,
+                        sellerName: name,
                         phone: phone,
                         image: imageURL,
                         sun:  checkingNullValue(sunlight),

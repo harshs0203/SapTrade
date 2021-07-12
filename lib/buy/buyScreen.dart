@@ -1,36 +1,31 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sap_trade/home/home_screen.dart';
 import 'package:sap_trade/modals/buyers.dart';
 import 'package:sap_trade/services/database/dataBaseServices.dart';
 
 import '../constants.dart';
 
 class BuyScreen extends StatefulWidget {
-
-
-final plantId;
+  final plantId;
 
   const BuyScreen({Key key, this.plantId}) : super(key: key);
 
   @override
   _BuyScreenState createState() => _BuyScreenState(plantId);
-
 }
 
-
 class _BuyScreenState extends State<BuyScreen> {
-
-   FirebaseAuth auth = FirebaseAuth.instance;
-   Buyer _buyer  = Buyer();
-   final plantId;
-   String name;
-   String location;
-   String address;
-   String phone;
-   String price;
+  FirebaseAuth auth = FirebaseAuth.instance;
+  Buyer _buyer = Buyer();
+  final plantId;
+  String name;
+  String location;
+  String address;
+  String phone;
+  String price;
 
   _BuyScreenState(this.plantId);
-
 
   inputData() {
     final User user = auth.currentUser;
@@ -42,10 +37,9 @@ class _BuyScreenState extends State<BuyScreen> {
 
   @override
   void initState() {
-    _formKey = new GlobalKey<FormState>();
+    _formKey = GlobalKey<FormState>();
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +48,10 @@ class _BuyScreenState extends State<BuyScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(
-              right: kDefaultPadding,
-              left: kDefaultPadding / 2,
-              top: kDefaultPadding * 0.50,
-              bottom: kDefaultPadding * 0.50,
+            right: kDefaultPadding,
+            left: kDefaultPadding / 2,
+            top: kDefaultPadding * 0.50,
+            bottom: kDefaultPadding * 0.50,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -67,24 +61,27 @@ class _BuyScreenState extends State<BuyScreen> {
               ),
               Text(
                 "Enter Your Details Here",
-                style: TextStyle(fontSize: 35,
+                style: TextStyle(
+                  fontSize: 35,
                   fontFamily: 'Roboto',
                   fontWeight: FontWeight.w800,
                 ),
               ),
               SizedBox(
-                height: size.height*0.05,
+                height: size.height * 0.05,
               ),
               Form(
                 key: _formKey,
                 child: Column(
-                  children: [Text(
-                    'Name',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Name',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
                     SizedBox(
                       height: size.height * 0.01,
                     ),
@@ -96,16 +93,19 @@ class _BuyScreenState extends State<BuyScreen> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Please enter your name';
                         }
                         return null;
                       },
                       onChanged: (text) {
                         setState(() {
                           name = text;
-                           _buyer.name= name;
+                          _buyer.name = name;
                         });
                       },
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
                     ),
                     Text(
                       'Location',
@@ -125,16 +125,19 @@ class _BuyScreenState extends State<BuyScreen> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Please enter your location';
                         }
                         return null;
                       },
                       onChanged: (text) {
                         setState(() {
                           location = text;
-                          _buyer.location =location;
+                          _buyer.location = location;
                         });
                       },
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
                     ),
                     Text(
                       'Address',
@@ -154,7 +157,7 @@ class _BuyScreenState extends State<BuyScreen> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Please enter your address';
                         }
                         return null;
                       },
@@ -164,6 +167,9 @@ class _BuyScreenState extends State<BuyScreen> {
                           _buyer.location = address;
                         });
                       },
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
                     ),
                     Text(
                       'Phone Number',
@@ -183,14 +189,17 @@ class _BuyScreenState extends State<BuyScreen> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Please enter you phone number';
+                        }
+                        if (value.length > 10 || value.length < 10) {
+                          return 'Enter a valid Number';
                         }
                         return null;
                       },
                       onChanged: (text) {
                         setState(() {
-                         phone = text;
-                         _buyer.pNum = phone;
+                          phone = text;
+                          _buyer.pNum = phone;
                         });
                       },
                     ),
@@ -207,13 +216,6 @@ class _BuyScreenState extends State<BuyScreen> {
               Container(
                 width: size.width * 0.5,
                 child: TextFormField(
-                  key: _formKey,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -229,7 +231,7 @@ class _BuyScreenState extends State<BuyScreen> {
                 ),
               ),
               SizedBox(
-                height: size.height*0.05,
+                height: size.height * 0.05,
               ),
               Container(
                 alignment: Alignment.bottomRight,
@@ -241,7 +243,7 @@ class _BuyScreenState extends State<BuyScreen> {
                       borderRadius: BorderRadius.circular(18.0),
                     ),
                     onPressed: () async {
-                      await DatabaseServices(plantId: plantId,uid: inputData())
+                      await DatabaseServices(plantId: plantId, uid: inputData())
                           .sendingBuyerInformation(
                         name: name,
                         location: location,
@@ -250,7 +252,12 @@ class _BuyScreenState extends State<BuyScreen> {
                         offeredPrice: price,
                         userId: inputData(),
                       );
-                      Navigator.pop(context);
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                      );
+
                     },
                     child: Text('Upload')),
               )

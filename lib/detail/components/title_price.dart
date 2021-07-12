@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import '../../constants.dart';
 
 class TitlePrice extends StatelessWidget {
-  final String title,location;
-  final String price;
+  final String title, location, price, seller;
 
-  const TitlePrice({Key key, this.title, this.location, this.price}) : super(key: key);
+  const TitlePrice(
+      {Key key, this.title, this.location, this.price, this.seller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +19,20 @@ class TitlePrice extends StatelessWidget {
             text: TextSpan(children: [
               TextSpan(
                 text: '$title\n'.toUpperCase(),
-                style: Theme.of(context).textTheme.headline4.copyWith(
-                    color: kTextColor, fontWeight: FontWeight.bold),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline4
+                    .copyWith(color: kTextColor, fontWeight: FontWeight.bold),
               ),
               TextSpan(
-                text: '  $location',
+                text: '$seller\n'.toUpperCase(),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5
+                    .copyWith(color: kTextColor),
+              ),
+              TextSpan(
+                text: '$location',
                 style: TextStyle(
                   fontWeight: FontWeight.w300,
                   color: kPrimaryColor,
@@ -32,8 +42,12 @@ class TitlePrice extends StatelessWidget {
             ]),
           ),
           Spacer(),
-          Text('₹$price',
-            style: Theme.of(context).textTheme.headline5.copyWith(color: kPrimaryColor),
+          Text(
+            '₹$price',
+            style: Theme.of(context)
+                .textTheme
+                .headline5
+                .copyWith(color: kPrimaryColor),
           ),
         ],
       ),

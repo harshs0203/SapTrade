@@ -34,7 +34,7 @@ class _BuyOffersState extends State<BuyOffers> {
           final List buyOffers =
               snapshot.data.docs.map((plant) => plant.data()).toList();
           return Container(
-            height: MediaQuery.of(context).size.height * 0.2,
+            height: MediaQuery.of(context).size.height ,
             width: MediaQuery.of(context).size.width,
             child: Center(
               child: ListView.builder(
@@ -49,26 +49,26 @@ class _BuyOffersState extends State<BuyOffers> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              buyOffers[index]['name'],
-                              style: TextStyle(color: kPrimaryColor,
+                              'Name: '+ buyOffers[index]['name'],
+                              style: TextStyle(color: Colors.teal[500],
                               fontSize: 30.0,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
-                              buyOffers[index]['Offered Price'],
+                              'Offered Price: ' + buyOffers[index]['Offered Price'],
                               style: TextStyle(color: kPrimaryColor),
                             ),
                             Text(
-                              buyOffers[index]['location'],
+                              'Location: ' +buyOffers[index]['location'],
                               style: TextStyle(color: kPrimaryColor),
                             ),
                             Text(
-                              buyOffers[index]['address'],
+                              'Address: ' +buyOffers[index]['address'],
                               style: TextStyle(color: kPrimaryColor),
                             ),
                             Text(
-                              buyOffers[index]['phoneNumber'],
+                              'Phone Number: ' +buyOffers[index]['phoneNumber'],
                               style: TextStyle(color: kPrimaryColor),
                             ),
                           ],

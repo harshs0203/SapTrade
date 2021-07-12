@@ -8,16 +8,16 @@ import 'package:sap_trade/constants.dart';
 import 'package:uuid/uuid.dart';
 
 class PlantDetails extends StatefulWidget {
-  final String name;
+  final String plantName;
   final String location;
-  final String address;
+  final String name;
   final String phone;
 
   const PlantDetails(
       {Key key,
-      this.name,
+      this.plantName,
       this.location,
-      this.address,
+      this.name,
       this.phone});
 
   @override
@@ -110,7 +110,7 @@ class _PlantDetailsState extends State<PlantDetails> {
                 margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
                 alignment: Alignment.centerLeft,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
                       'Sunlight Requirement',
@@ -142,7 +142,7 @@ class _PlantDetailsState extends State<PlantDetails> {
                 margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
                 alignment: Alignment.centerLeft,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
                       'Humid Capacity',
@@ -174,7 +174,7 @@ class _PlantDetailsState extends State<PlantDetails> {
                 margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
                 alignment: Alignment.centerLeft,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
                       'Water Requirement',
@@ -206,7 +206,7 @@ class _PlantDetailsState extends State<PlantDetails> {
                 margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
                 alignment: Alignment.centerLeft,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
                       'Wind Endurance',
@@ -247,9 +247,9 @@ class _PlantDetailsState extends State<PlantDetails> {
                   humidity: sellerInformation.moisture,
                   wind: sellerInformation.wind,
                   imageURL: _imageFile != null ? _imageFile.path : 'assets/images/plantDefault.png',
-                  name: widget.name,
+                  plantName: widget.plantName,
                   location: widget.location,
-                  address: widget.address,
+                  name: widget.name,
                   phone: widget.phone,
                 ),
               ),

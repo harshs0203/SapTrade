@@ -26,7 +26,7 @@ class RecommendedPanel extends StatelessWidget {
               itemBuilder: (context, index) {
                 return RecommendedCard(
                   image: listSellers[index]['imageURL'].toString(),
-                  title: listSellers[index]['seller information']['name']
+                  title: listSellers[index]['seller information']['Plant Name']
                       .toString(),
                   location: listSellers[index]['seller information']['location']
                       .toString(),

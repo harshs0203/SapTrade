@@ -12,9 +12,9 @@ class DatabaseServices {
       FirebaseFirestore.instance.collection('Buyer');
 
   Future sendingSellerInformation(
-      {String name,
+      {String plantName,
       String location,
-      String address,
+      String sellerName,
       dynamic phone,
       dynamic price,
       String others,
@@ -25,9 +25,9 @@ class DatabaseServices {
       dynamic image}) async {
     return await plantCollection.doc().set({
       'seller information': {
-        'name': name,
+        'Plant Name': plantName,
         'location': location,
-        'address': address,
+        'Seller Name': sellerName,
         'phoneNumber': phone,
         'userId': uid,
       },

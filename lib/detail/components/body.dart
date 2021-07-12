@@ -26,8 +26,9 @@ class Body extends StatelessWidget {
             water: listSeller[index]['water'].toString(),
           ),
           TitlePrice(
-            title: listSeller[index]['seller information']['name'].toString(),
+            title: listSeller[index]['seller information']['Plant Name'].toString(),
             price: listSeller[index]['price'].toString(),
+            seller: listSeller[index]['seller information']['Seller Name'].toString(),
             location:
                 listSeller[index]['seller information']['location'].toString(),
           ),

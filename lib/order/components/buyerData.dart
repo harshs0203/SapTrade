@@ -20,7 +20,7 @@ class BuyerData extends StatelessWidget {
               Card(
                 elevation: 2.0,
                   margin:
-                      EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                      EdgeInsets.symmetric(vertical: 5.0,horizontal: 20.0),
                   child: ListTile(
                     title: Row(
                       children: [

@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'Sap Trade',
         theme: ThemeData(
+          fontFamily: 'Otomanopee',
           scaffoldBackgroundColor: kBackgroundColor,
           primaryColor: kPrimaryColor,
           textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
